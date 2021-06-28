@@ -1,25 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Base Camp Coding Academy - Inventory Management System</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body>
+    <nav>
+
+    </nav>
     <div id="welcome">
         <h1>BCCA Inventory Management System</h1>
     </div>
-    <div id="add">
-        <a href="/add">Add Items</a>
+
+    <div>
+        <button><a href="/register">Sign Up</a></button>
     </div>
-    <div id="view">
-        <h3>View Inventory</h3>
+
+    <div>
+        <button><a href="/login">Login</a></button>
     </div>
-    <div id="delete">
-        <h3>Delete Items</h3>
-    </div>
-    <div id="update">
-        <h3>Update Inventory</h3>
+
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <div id="add">
+            <a href="/add">Add Items</a>
+        </div>
+        <div id="view">
+            <a href="/view">View Inventory</a>
+        </div>
+        <div id="delete">
+            <a href="/delete">Delete Items</a>
+        </div>
+        <div id="update">
+            <a href="/update">Update Inventory</a>
+        </div>
+        <div>
+            <a href="/users">Users</a>
+        </div>
     </div>
 
 </body>
