@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <title>Base Camp Coding Academy - Inventory Management System</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
-    <nav>
-
+<header>
+    <nav id="nav">
+        <ul>
+            <li><a href="/register">Sign Up</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
     </nav>
+</header>
     <div id="welcome">
-        <h1>BCCA Inventory Management System</h1>
+        <h1 class="title">BCCA Inventory Management System</h1>
     </div>
-
-    <div>
-        <button><a href="/register">Sign Up</a></button>
-    </div>
-
-    <div>
-        <button><a href="/login">Login</a></button>
-    </div>
-
+<div  class="container">
+    <img  class="boxes" src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80"> </img>
+</div>
     <div th:if="${#authorization.expression('isAuthenticated()')}">
         <div id="add">
             <a href="/add">Add Items</a>

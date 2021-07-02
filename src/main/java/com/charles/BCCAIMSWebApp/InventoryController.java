@@ -1,6 +1,7 @@
 package com.charles.BCCAIMSWebApp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,21 @@ public class InventoryController {
     private UserRepository userRepo;
 
     @GetMapping("/add")
-    public String addItem() {
+    public String add(Model model) {
+        model.addAttribute("inventory", new Inventory());
         return "add";
     }
+
+    @PostMapping("/add_success")
+    public String processItem(Inventory inventory, @AuthenticationPrincipal CustomUserDetail userDetail, Model model) {
+        System.out.println(inventory.getItem());
+        System.out.println(inventory.getQuantity());
+        System.out.println(inventory.getLowQuantity());
+
+        inventoryRepository.save(inventory);
+        return "add_success";
+    }
+
 
     @GetMapping("/list")
     public Iterable<Inventory> getInventory() {

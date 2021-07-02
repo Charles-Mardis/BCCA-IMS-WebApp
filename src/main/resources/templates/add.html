@@ -6,7 +6,38 @@
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body>
-    <h1>why</h1>
+<form th:action="@{/add_success}" th:object="${inventory}"
+      method="post" style="max-width: 600px; margin: 0 auto;">
+    <div class="m-3">
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Item </label>
+            <div class="col-8">
+                <input  th:field="*{item}" class="form-control"
+                         required minlength="6" maxlength="10"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Password: </label>
+            <div class="col-8">
+                <input  th:field="*{quantity}" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">First Name: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{lowQuantity}" class="form-control"
+                       required minlength="2" maxlength="20"/>
+            </div>
+        </div>
+
+
+        <div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+    </div>
+</form>
 
 </body>
 </html>

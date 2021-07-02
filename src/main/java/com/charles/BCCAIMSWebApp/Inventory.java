@@ -1,18 +1,19 @@
 package com.charles.BCCAIMSWebApp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="inventory")
 public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(nullable = false, unique = true, length=60)
     private String item;
+    @Column(nullable = false, length=11)
     private Integer quantity;
+    @Column(nullable = false, length=11)
     private Integer lowQuantity;
 
     public Integer getId() {
