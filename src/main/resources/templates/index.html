@@ -23,19 +23,16 @@
 </div>
     <div th:if="${#authorization.expression('isAuthenticated()')}">
         <div id="add">
-            <a href="/add">Add Items</a>
+            <a href="/add" class="floated">Add Items</a>
         </div>
         <div id="view">
-            <a href="/view">View Inventory</a>
+            <a href="/view" class="floated2">View Inventory</a>
         </div>
         <div id="delete">
-            <a href="/delete">Delete Items</a>
+            <a href="/delete" class="floated3">Delete Items</a>
         </div>
         <div id="update">
-            <a href="/update">Update Inventory</a>
-        </div>
-        <div>
-            <a href="/users">Users</a>
+            <a href="/update" class="floated4">Update Inventory</a>
         </div>
     </div>
 

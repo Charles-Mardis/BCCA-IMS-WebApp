@@ -46,7 +46,7 @@ padding-top: 40px;
 }
 .boxes{
 width: 800px;
-height: 440px;
+height: 460px;
 display: block;
 margin-left: auto;
 margin-right: auto;: auto;
@@ -54,6 +54,27 @@ margin-right: auto;: auto;
 .container{
 background: #14CC60;
 width : 800px;
-height: 500px;
+height: 460px;
 margin: auto;
+}
+.floated{
+    position:relative;
+    top: 33px;
+    left:80px;
+}
+.floated2{
+    position:relative;
+    top: 33px;
+    left:515px;
+}
+.floated3{
+    position:relative;
+    top: -44px;
+    left:940px;
+}
+
+.floated4{
+    position:relative;
+    top: -66px;
+    left: 1200px;
 }

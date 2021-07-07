@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Edit Inventory</title>
+  <link rel="stylesheet" th:href="@{/}" />
+</head>
+<body>
+<header>
+  <div th:replace="~{nav :: nav}"></div>
+</header>
+<div align="center" class="container">
+  <h1>Edit Inventory</h1>
+  <br />
+  <form th:object="${inventory}"
+        method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div class="form__group">
+      <p> Item </p>
+      <input type="text" class="form__input" th:field="*{Item}"
+             required/>
+    </div>
+    <div class="form__group">
+      <p> Quantity </p>
+      <input type="number" class="form__input" th:field="*{quantity}"
+             required/>
+    </div>
+    <div class="form__group">
+      <p> Table Number </p>
+      <input type="number" class="form__input" th:field="*{lowQuantity}"
+             required/>
+    </div>
+    <button type="submit" class="btn">Order</button>
+  </form>
+</div>
+</body>
+</html>

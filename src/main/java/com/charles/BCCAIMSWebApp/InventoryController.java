@@ -6,9 +6,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class InventoryController {
@@ -35,7 +37,6 @@ public class InventoryController {
         return "add_success";
     }
 
-
     @GetMapping("/list")
     public Iterable<Inventory> getInventory() {
         return inventoryRepository.findAll();
@@ -49,11 +50,6 @@ public class InventoryController {
     @GetMapping("/delete")
     public String delete() {
         return "delete";
-    }
-
-    @GetMapping("/view")
-    public String view() {
-        return "view";
     }
 
     @GetMapping("/update")
@@ -80,6 +76,40 @@ public class InventoryController {
         model.addAttribute("listUsers", listUsers);
 
         return "users";
+    }
+    @GetMapping("/view")
+    public String listInventory(Model model) {
+        List<Inventory> listInventory = (List<Inventory>) inventoryRepository.findAll();
+        model.addAttribute("listInventory", listInventory);
+        return "view";
+    }
+
+    @GetMapping("/inventory_delete/{id}")
+    public String inventory_delete(@PathVariable(name ="id")Long id, Inventory inventory) {
+        Optional<Inventory> oldInventory = inventoryRepository.findById(inventory.getId());
+        oldInventory.ifPresent(value -> inventoryRepository.delete(oldInventory.get()));
+        return "redirect:/delete";
+    }
+
+    @GetMapping("/inventory_update/{id}")
+    public ModelAndView editInventory(@PathVariable(name ="id")Integer id) {
+        ModelAndView mav =  new ModelAndView("edit_inventory");
+        Optional<Inventory> inventory = inventoryRepository.findById(id);
+        mav.addObject("inventory",inventory);
+        return mav;
+    }
+
+    @PostMapping("/update")
+    public String inventory_info(Inventory inventory){
+        Optional<Inventory> oldInventory = inventoryRepository.findById(inventory.getId());
+        if (oldInventory != null) {
+            oldInventory.get().setId(inventory.getId());
+            oldInventory.get().setItem(inventory.getItem());
+            oldInventory.get().setQuantity(inventory.getQuantity());
+            oldInventory.get().setLowQuantity(inventory.getLowQuantity());
+            inventoryRepository.save(oldInventory.get());
+        }
+        return "redirect:/view";
     }
 
 }
