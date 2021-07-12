@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Base Camp Coding Academy - Inventory Management System</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <!--<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" /> -->
 </head>
 <body>
 <header>
     <nav id="nav">
         <ul>
-            <li><a href="/register">Sign Up</a></li>
-            <li><a href="/login">Login</a></li>
+            <li sec:authorize="!isFullyAuthenticated()" ><a href="login">Login</a></li>
+            <li sec:authorize="!isFullyAuthenticated()" ><a href="register">Sign up</a></li>
+            <li th:if="${#authorization.expression('isAuthenticated()')}"> <a href="/logout" >Log out </a></li>
         </ul>
     </nav>
 </header>
@@ -22,17 +23,16 @@
     <img  class="boxes" src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80"> </img>
 </div>
     <div th:if="${#authorization.expression('isAuthenticated()')}">
-        <div id="add">
-            <a href="/add" class="floated">Add Items</a>
-        </div>
-        <div id="view">
-            <a href="/view" class="floated2">View Inventory</a>
-        </div>
-        <div id="delete">
-            <a href="/delete" class="floated3">Delete Items</a>
-        </div>
-        <div id="update">
-            <a href="/update" class="floated4">Update Inventory</a>
+        <div class="row">
+            <div class="column">
+                <a href="/add" >Add Items</a>
+            </div>
+            <div class="column">
+                <a href="/view" >View Inventory</a>
+            </div>
+            <div class="column">
+                <a href="/low_inventory"n >Low Inventory</a>
+            </div>
         </div>
     </div>
 

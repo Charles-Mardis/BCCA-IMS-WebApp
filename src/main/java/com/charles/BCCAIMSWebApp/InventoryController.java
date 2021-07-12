@@ -31,10 +31,10 @@ public class InventoryController {
     public String processItem(Inventory inventory, @AuthenticationPrincipal CustomUserDetail userDetail, Model model) {
         System.out.println(inventory.getItem());
         System.out.println(inventory.getQuantity());
-        System.out.println(inventory.getLowQuantity());
+        System.out.println(inventory.getLow_quantity());
 
         inventoryRepository.save(inventory);
-        return "add_success";
+        return "/add_success";
     }
 
     @GetMapping("/list")
@@ -88,10 +88,10 @@ public class InventoryController {
     public String inventory_delete(@PathVariable(name ="id")Long id, Inventory inventory) {
         Optional<Inventory> oldInventory = inventoryRepository.findById(inventory.getId());
         oldInventory.ifPresent(value -> inventoryRepository.delete(oldInventory.get()));
-        return "redirect:/delete";
+        return "redirect:/view";
     }
 
-    @GetMapping("/inventory_update/{id}")
+    @GetMapping("/edit_inventory/{id}")
     public ModelAndView editInventory(@PathVariable(name ="id")Integer id) {
         ModelAndView mav =  new ModelAndView("edit_inventory");
         Optional<Inventory> inventory = inventoryRepository.findById(id);
@@ -106,10 +106,17 @@ public class InventoryController {
             oldInventory.get().setId(inventory.getId());
             oldInventory.get().setItem(inventory.getItem());
             oldInventory.get().setQuantity(inventory.getQuantity());
-            oldInventory.get().setLowQuantity(inventory.getLowQuantity());
+            oldInventory.get().setLow_quantity(inventory.getLow_quantity());
             inventoryRepository.save(oldInventory.get());
         }
         return "redirect:/view";
+    }
+    @GetMapping("/low_inventory")
+    public String lowInventory(Long id, Integer quantity, Integer low_quantity, Model model) {
+        List<Inventory> listInventory = inventoryRepository.getAllItems();
+        listInventory.removeIf(low -> low.getQuantity() > low.getLow_quantity() );
+        model.addAttribute("listInventory", listInventory);
+        return "low_inventory";
     }
 
 }

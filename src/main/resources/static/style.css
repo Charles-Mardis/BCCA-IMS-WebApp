@@ -7,7 +7,7 @@ button {
 }
 
 body {
-    background-color:#27FB6B;
+    background-color:#447A88;
 }
 
 a {
@@ -24,7 +24,7 @@ header {
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    background: #0A2E36;
+    background: #172A3A;
     z-index: 2;
 }
 nav ul {
@@ -36,26 +36,21 @@ nav ul {
 }
 nav ul li a {
     color: #fff;
-    padding: 12px 30px;
     text-decoration: none;
-    line-height: 60px;
+    padding: 5px;
+    line-height: 30px;
     font-size: 16px;
 }
 .title{
-padding-top: 40px;
+padding-top: 50px;
 }
 .boxes{
 width: 800px;
-height: 460px;
+height: 400px;
 display: block;
 margin-left: auto;
 margin-right: auto;: auto;
-}
-.container{
-background: #14CC60;
-width : 800px;
-height: 460px;
-margin: auto;
+padding-top: 0px;
 }
 .floated{
     position:relative;
@@ -77,4 +72,105 @@ margin: auto;
     position:relative;
     top: -66px;
     left: 1200px;
+}
+
+.box {
+  width: 320px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+}
+
+* {box-sizing:border-box}
+h1 {
+    text-align:center;
+    font-family:comfortaa;
+    font-weight:900;
+    font-size:3em;
+    color:#fff;
+    text-shadow:0em 0.05em 0 rgba(0,0,0,0.35)
+}
+a{color:#454545;background:transparent;border-width:2px;border-style: solid;border-color: #454545;position:relative;margin:1em;display:inline-block;padding:0.5em 1em;transition:all 0.3s ease-in-out;text-align:center;
+font-family:comfortaa;font-weight:bold}
+a:before, a:after {content:'';display:block;position:absolute;border-color:#454545;box-sizing:border-box;border-style:solid;width:1em;height:1em;transition:all 0.3s ease-in-out}
+a:before {top:-6px;left:-6px;border-width:2px 0 0 2px;z-index:5;}
+a:after {bottom:-6px;right:-6px;border-width:0 2px 2px 0;}
+a:hover:before, a:hover:after {width:calc(100% + 12px);
+  height:calc(100% + 12px);border-color:#fff}
+a:hover {color:#353535;background-color:#fff;border-color:#fff}
+.panel {max-width:960px;text-align:center;position:relative;margin:auto;}
+
+table{
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+/* Zebra stripping  */
+tr:nth-of-type(odd){
+  background: #eee;
+}
+
+th{
+  background: #111;
+  color: #fff;
+}
+td, th {
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+/*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr { border: 1px solid #ccc; }
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+}
+.title {
+    padding:40px;
+}
+.row {
+display: flex;
+justify-content: center;
+justify-content: space-evenly;
+padding-top:25px;
+}
+
+.left{
+    margin-left: 0;
 }

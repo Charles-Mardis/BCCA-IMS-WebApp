@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>howdy</title>
+    <title>Success</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
+<header>
+    <nav id="nav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li sec:authorize="!isFullyAuthenticated()" ><a href="login">Login</a></li>
+            <li sec:authorize="!isFullyAuthenticated()" ><a href="register">Sign up</a></li>
+            <li th:if="${#authorization.expression('isAuthenticated()')}"> <a href="/logout" >Log out </a></li>
+        </ul>
+    </nav>
+</header>
 <body>
-<p>howdy</p>
+<h1 class="title">Successfully added</h1>
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <div class="row">
+        <div class="column">
+            <a class="panel" href="/add">Add another Item</a>
+        </div>
+        <div class="column">
+            <a class="panel" href="/view">View Items</a>
+        </div>
+
+    </div>
+</div>
+
+
+
 </body>
 </html>

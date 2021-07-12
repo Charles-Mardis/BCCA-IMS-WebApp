@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Low Inventory</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+
+</head>
+<body>
+<header>
+    <nav id="nav">
+        <ul>
+            <li class="left"><a href="/" >BBCA-IMS</a></li>
+            <li sec:authorize="!isFullyAuthenticated()" ><a href="login">Login</a></li>
+            <li sec:authorize="!isFullyAuthenticated()" ><a href="register">Sign up</a></li>
+            <li th:if="${#authorization.expression('isAuthenticated()')}"> <a href="/logout" >Log out </a></li>
+        </ul>
+    </nav>
+</header>
+<h1 class="title">Low Quantity</h1>
+<div>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Item ID</th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Low Quantity</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="inventory: ${listInventory}">
+            <td th:text="${inventory.id}">Item ID</td>
+            <td th:text="${inventory.item}">Item</td>
+            <td th:text="${inventory.quantity}">Quantity</td>
+            <td th:text="${inventory.low_quantity}">Low Quantity</td>
+            <td><a th:href="@{'/edit_inventory/'+ ${inventory.id}}"></a></td>
+            <td><a th:href="@{'/inventory_delete/'+ ${inventory.id}}"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

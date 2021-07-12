@@ -14,7 +14,7 @@ public class Inventory {
     @Column(nullable = false, length=11)
     private Integer quantity;
     @Column(nullable = false, length=11)
-    private Integer lowQuantity;
+    private Integer low_quantity;
 
     public Integer getId() {
         return id;
@@ -38,8 +38,12 @@ public class Inventory {
 
     public void setQuantity(Integer quantity) {this.quantity = quantity; }
 
-    public Integer getLowQuantity() { return lowQuantity; }
+    public Integer getLow_quantity() {
+        return low_quantity;
+    }
 
-    public void setLowQuantity(Integer lowQuantity) { this.lowQuantity = lowQuantity; }
+    public void setLow_quantity(Integer low_quantity) {
+        this.low_quantity = low_quantity;
+    }
 }
 

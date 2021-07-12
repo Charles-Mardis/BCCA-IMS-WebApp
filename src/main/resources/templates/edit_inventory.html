@@ -4,21 +4,27 @@
 <head>
   <meta charset="utf-8" />
   <title>Edit Inventory</title>
-  <link rel="stylesheet" th:href="@{/}" />
+  <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
-<body>
 <header>
-  <div th:replace="~{nav :: nav}"></div>
+  <nav id="nav">
+    <ul>
+      <li sec:authorize="!isFullyAuthenticated()" ><a href="login">Login</a></li>
+      <li sec:authorize="!isFullyAuthenticated()" ><a href="register">Sign up</a></li>
+      <li th:if="${#authorization.expression('isAuthenticated()')}"> <a href="/logout" >Log out </a></li>
+    </ul>
+  </nav>
 </header>
+<body>
 <div align="center" class="container">
-  <h1>Edit Inventory</h1>
+  <h1 class="title">Edit Inventory</h1>
   <br />
-  <form th:object="${inventory}"
+  <form th:action="@{/update}" th:object="${inventory}"
         method="post">
     <input type="hidden" th:field="*{id}" />
     <div class="form__group">
       <p> Item </p>
-      <input type="text" class="form__input" th:field="*{Item}"
+      <input type="text" class="form__input" th:field="*{item}"
              required/>
     </div>
     <div class="form__group">
@@ -28,10 +34,10 @@
     </div>
     <div class="form__group">
       <p> Table Number </p>
-      <input type="number" class="form__input" th:field="*{lowQuantity}"
+      <input type="number" class="form__input" th:field="*{low_quantity}"
              required/>
     </div>
-    <button type="submit" class="btn">Order</button>
+    <button type="submit" class="btn">Update</button>
   </form>
 </div>
 </body>
